@@ -6,7 +6,12 @@
     <a-assets></a-assets>
     <a-scene>
       <a-entity geometry="primitive: box" material="color: #C03546"></a-entity>
-      <a-entity example="trigger: siri">
+
+        <a-entity id="cube" geometry="primitive: box" material="color: #C03546" example>
+          <a-entity example="trigger: siri">
+          <a-animation begin="rotate" attribute="rotation" to="0 360 0"></a-animation>
+        </a-entity>
+
     </a-scene>
   </body>
 </html>

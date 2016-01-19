@@ -10,7 +10,7 @@ module.exports.Component = {
   init: function () {
     console.log('starting');
 
-    var grm = "#JSGF v1.0; grammar fxosVoiceCommands; public <simple> =  hello | goodbye ;";
+    var grm = "#JSGF v1.0; grammar fxosVoiceCommands; public <simple> =  hello | goodbye | cube rotate ;";
     this.recognition = new SpeechRecognition();
     this.recognition.lang = "en-US";
     this.speechrecognitionlist = new SpeechGrammarList();
@@ -43,7 +43,7 @@ module.exports.Component = {
    */
   play: function () {
 
-
+    var that = this;
     this.recognition.onstart = function() {
       recognizing = true;
       console.log('Speak slowly and clearly');
@@ -51,6 +51,7 @@ module.exports.Component = {
 
     this.recognition.onerror = function(event) {
       console.log("There was a recognition error...");
+      that.recognition.start();
     };
 
     this.recognition.onend = function() {
@@ -59,35 +60,22 @@ module.exports.Component = {
     };
 
     this.recognition.onresult = function(event) {
-
-      console.log("recognition.onresult called");
-
       //var interim_transcript = '';
       var score = '';
-
       // Assemble the transcript from the array of results
       for (var i = event.resultIndex; i < event.results.length; ++i) {
-        if (event.results[i].isFinal) {
-          console.log("recognition.onresult : isFinal");
-          final_transcript += event.results[i][0].transcript;
+        if (event.results[i].isFinal && (event.results[i][0].transcript != "")) {
+          console.log("recognition.onresult : isFinal:",  event.results[i][0].transcript);
+          this.final_transcript = event.results[i][0].transcript;
         } else {
-          console.log("recognition.onresult : not isFinal");
-          final_transcript += event.results[i][0].transcript;
-          score = event.results[i][0].confidence;
+          //console.log("recognition.onresult : not isFinal");
+          //this.final_transcript += event.results[i][0].transcript;
+          //score = event.results[i][0].confidence;
         }
       }
-
-      console.log("interim:  " + interim_transcript);
-      console.log("final:    " + final_transcript);
-      // update the web page
-
-      //$('#final_transcript').html(final_transcript );
-      //$('#interim_transcript').html(final_transcript  )  ;
-      //$('#start_button').html('Click to speak');
-
+      console.log("final:" + this.final_transcript);
+      that.recognition.start();
     };
-
-
   },
 
   /**
