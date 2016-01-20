@@ -74,7 +74,7 @@ module.exports.Component = {
         }
       }
       console.log("final:", this.final_transcript);
-      this.speechRecognitionEventHandler(this.final_transcript);
+      that.speechRecognitionEventHandler(this.final_transcript);
       that.recognition.start();
     };
   },
