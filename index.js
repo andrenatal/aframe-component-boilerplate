@@ -73,7 +73,8 @@ module.exports.Component = {
           //score = event.results[i][0].confidence;
         }
       }
-      console.log("final:" + this.final_transcript);
+      console.log("final:", this.final_transcript);
+      this.speechRecognitionEventHandler(this.final_transcript);
       that.recognition.start();
     };
   },
@@ -84,8 +85,11 @@ module.exports.Component = {
    */
   remove: function () { },
 
-  speechRecognitionEventHandler : function (){
-    this.el.emit('cube rotate');
-  }
+  speechRecognitionEventHandler : function (transcript){
+    console.log("at speechHandler:", transcript);
 
+    if (transcript.indexOf('cube') > -1){
+      this.el.emit(' rotate');
+    }
+  }
 };
