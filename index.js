@@ -89,11 +89,12 @@ module.exports.Component = {
     console.log("at speechHandler:", transcript);
 
     if (transcript.indexOf('cube') > -1){
+      console.log('cube rotate');
       this.el.emit('rotate');
     }
 
     if (transcript.indexOf('ball') > -1){
-      console.log('appear');
+      console.log('ball appear');
       this.el.emit('appear');
     }
 
