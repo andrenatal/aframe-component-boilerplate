@@ -89,7 +89,7 @@ module.exports.Component = {
     console.log("at speechHandler:", transcript);
 
     if (transcript.indexOf('cube') > -1){
-      this.el.emit(' rotate');
+      this.el.emit('rotate');
     }
   }
 };
