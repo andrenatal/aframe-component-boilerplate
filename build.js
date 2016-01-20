@@ -16,7 +16,7 @@ module.exports.Component = {
   init: function () {
     console.log('starting');
 
-    var grm = "#JSGF v1.0; grammar fxosVoiceCommands; public <simple> =  hello | goodbye | cube rotate ;";
+    var grm = "#JSGF v1.0; grammar fxosVoiceCommands; public <simple> =  ball appear | cube rotate ;";
     this.recognition = new SpeechRecognition();
     this.recognition.lang = "en-US";
     this.speechrecognitionlist = new SpeechGrammarList();
@@ -95,8 +95,15 @@ module.exports.Component = {
     console.log("at speechHandler:", transcript);
 
     if (transcript.indexOf('cube') > -1){
+      console.log('cube rotate');
       this.el.emit('rotate');
     }
+
+    if (transcript.indexOf('ball') > -1){
+      console.log('ball appear');
+      this.el.emit('appear');
+    }
+
   }
 };
 
