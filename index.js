@@ -82,5 +82,10 @@ module.exports.Component = {
    * Called when a component is removed (e.g., via removeAttribute).
    * Generally undoes all modifications to the entity.
    */
-  remove: function () { }
+  remove: function () { },
+
+  speechRecognitionEventHandler : function (){
+    this.el.emit('cube rotate');
+  }
+
 };
