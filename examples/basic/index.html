@@ -1,13 +1,18 @@
 <html>
-  <head>
-    <script src="../build.js"></script>
-  </head>
-  <body>
-    <a-assets></a-assets>
-    <a-scene>
-      <a-entity id="cube" geometry="primitive: box" material="color: #C03546" example>
-          <a-animation begin="rotate" attribute="rotation" to="0 360 0"></a-animation>
-        </a-entity>
-    </a-scene>
-  </body>
+<head>
+  <script src="../build.js"></script>
+</head>
+<body>
+<a-assets></a-assets>
+<a-scene>
+  <a-entity id="cube" geometry="primitive: box" material="color: #C03546" example>
+    <a-animation begin="rotate" attribute="rotation" to="0 360 0"></a-animation>
+  </a-entity>
+
+  <a-entity id="ball" geometry="primitive: sphere" material="color: orange; opacity: 0; transparent: true" position="2 0 0">
+    <a-animation begin="appear" attribute="material.opacity" to="1">
+  </a-entity>
+
+</a-scene>
+</body>
 </html>
