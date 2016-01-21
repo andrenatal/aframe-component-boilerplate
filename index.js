@@ -10,7 +10,7 @@ module.exports.Component = {
   init: function () {
     console.log('starting');
 
-    var grm = "#JSGF v1.0; grammar fxosVoiceCommands; public <simple> =  ball appear | cube rotate ;";
+    var grm = "#JSGF v1.0; grammar fxosVoiceCommands; public <simple> =  cube rotate two times | cube show up | cube rotate five times | cube disappear | cube go away | cube come back | cube grow up | cube shrink;";
     this.recognition = new SpeechRecognition();
     this.recognition.lang = "en-US";
     this.speechrecognitionlist = new SpeechGrammarList();
@@ -63,6 +63,7 @@ module.exports.Component = {
       //var interim_transcript = '';
       var score = '';
       // Assemble the transcript from the array of results
+      this.final_transcript = "";
       for (var i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal && (event.results[i][0].transcript != "")) {
           console.log("recognition.onresult : isFinal:",  event.results[i][0].transcript);
@@ -88,15 +89,44 @@ module.exports.Component = {
   speechRecognitionEventHandler : function (transcript){
     console.log("at speechHandler:", transcript);
 
-    if (transcript.indexOf('cube') > -1){
-      console.log('cube rotate');
-      this.el.emit('rotate');
+    if (transcript.indexOf('five') > -1){
+      console.log('cube rotate five');
+      this.el.emit('rotatefive');
     }
 
-    if (transcript.indexOf('ball') > -1){
+    if (transcript.indexOf('two') > -1){
+      console.log('cube rotate two');
+      this.el.emit('rotatetwo');
+    }
+
+    if (transcript.indexOf('show') > -1){
       console.log('ball appear');
       this.el.emit('appear');
     }
 
+    if (transcript.indexOf('disappear') > -1){
+      console.log('ball disappear');
+      this.el.emit('disappear');
+    }
+
+    if (transcript.indexOf('go') > -1){
+      console.log('go away');
+      this.el.emit('moveaway');
+    }
+
+    if (transcript.indexOf('back') > -1){
+      console.log('back');
+      this.el.emit('back');
+    }
+
+    if (transcript.indexOf('grow') > -1){
+      console.log('back');
+      this.el.emit('grow');
+    }
+
+    if (transcript.indexOf('shrink') > -1){
+      console.log('back');
+      this.el.emit('shrink');
+    }
   }
 };
