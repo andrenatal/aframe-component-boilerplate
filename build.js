@@ -16,7 +16,7 @@ module.exports.Component = {
   init: function () {
     console.log('starting');
 
-    var grm = "#JSGF v1.0; grammar fxosVoiceCommands; public <simple> =  cube rotate two times | cube appear | cube rotate five times | cube disappear | cube go away | cube come back;";
+    var grm = "#JSGF v1.0; grammar fxosVoiceCommands; public <simple> =  cube rotate two times | cube appear | cube rotate five times | cube disappear | cube go away | cube come back | cube grow up | cube shrink;";
     this.recognition = new SpeechRecognition();
     this.recognition.lang = "en-US";
     this.speechrecognitionlist = new SpeechGrammarList();
@@ -125,6 +125,15 @@ module.exports.Component = {
       this.el.emit('back');
     }
 
+    if (transcript.indexOf('grow') > -1){
+      console.log('back');
+      this.el.emit('grow');
+    }
+
+    if (transcript.indexOf('shrink') > -1){
+      console.log('back');
+      this.el.emit('shrink');
+    }
   }
 };
 
